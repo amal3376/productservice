@@ -1,0 +1,69 @@
+package com.example.productservice.controllers;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+public class CategoryController {
+
+    @RestController
+    @RequestMapping("/api/v1/categories")
+    public class CategoryController {
+
+        private CategoryService categoryService;
+
+        public CategoryController(CategoryService categoryService) {
+            this.categoryService = categoryService;
+        }
+
+
+        @GetMapping("/prod/{name}")
+        public List<ProductDTO> getProductsByCategory(@PathVariable("name") String name) throws NotFoundException {
+            return this.categoryService.getProductsByACategory(name);
+
+        }
+
+        @GetMapping("/title")
+        public List<String> productsTitleByCategoryId(@RequestBody ProductTitleRequestDTO requestDTO) throws NotFoundException {
+
+            List<Long> categoryIds = requestDTO.getCategoryIds();
+            return this.categoryService.getProductsTitle(categoryIds);
+
+            // return null;
+        }
+
+        @GetMapping("/products")
+        public List<ProductDTO> productsByCategoryId(Long id) {
+
+            return null;
+        }
+
+
+        @GetMapping
+        public List<CategoryDTO> getAllCategories() {
+            return this.categoryService.getAllCategoriesList();
+        }
+
+        @GetMapping("{id}")
+        public Category getCategoryById(@PathVariable("id") Long id) throws NotFoundException {
+            return this.categoryService.getCategoryById(id);
+        }
+
+
+        @PostMapping
+        public CategoryDTO createCategory(@RequestBody CategoryDTO categoryDTO) {
+            return this.categoryService.createCategory(categoryDTO);
+        }
+
+        @DeleteMapping("{id}")
+        public CategoryDTO deleteCategoryById(@PathVariable("id") Long id) throws NotFoundException {
+            return this.categoryService.deleteCategoryById(id);
+        }
+
+        @PutMapping("{id}")
+        public CategoryDTO updateCategoryById(@PathVariable("id") Long id, @RequestBody CategoryDTO categoryDTO) throws NotFoundException {
+            return this.categoryService.updateCategoryById(id, categoryDTO);
+        }
+
+    }
+}
