@@ -1,3 +1,9 @@
+import com.example.productservice.dtos.ProductDTO;
+import com.example.productservice.exceptions.NotFoundException;
+import com.example.productservice.services.SelfProduct;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/products")

@@ -1,3 +1,9 @@
+import com.example.productservice.dtos.PriceDTO;
+import com.example.productservice.exceptions.NotFoundException;
+import com.example.productservice.services.PriceService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/price")

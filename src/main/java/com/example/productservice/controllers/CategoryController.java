@@ -1,10 +1,14 @@
 package com.example.productservice.controllers;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.example.productservice.dtos.CategoryDTO;
+import com.example.productservice.dtos.ProductDTO;
+import com.example.productservice.dtos.ProductTitleRequestDTO;
+import com.example.productservice.exceptions.NotFoundException;
+import com.example.productservice.models.Category;
+import com.example.productservice.services.CategoryService;
+import org.springframework.web.bind.annotation.*;
 
-public class CategoryController {
+import java.util.List;
 
     @RestController
     @RequestMapping("/api/v1/categories")
@@ -66,4 +70,3 @@ public class CategoryController {
         }
 
     }
-}
